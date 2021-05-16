@@ -7,6 +7,6 @@ os:
   - freebsd
   - osx
 script:
+  - python setup.py install
   - make test
   - make test-data
-  - python setup.py install
