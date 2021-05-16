@@ -17,7 +17,7 @@ The installation requires to compile the original C code using `gcc`.
 
 ## Usage
 
-Example notebook: [doc2term](http://nbviewer.ipython.org/urls/raw.github.com/callforpapers-source/doc2term/master/examples/word2vec.ipynb)
+Example notebook: [doc2term](https://nbviewer.jupyter.org/github/callforpapers-source/doc2term/blob/main/examples/doc2term.ipynb)
 
 ### Example
 
