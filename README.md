@@ -1,5 +1,6 @@
 # doc2term
 
+[![Build Status](https://travis-ci.com/callforpapers-source/doc2term.svg?branch=main)](https://travis-ci.com/callforpapers-source/doc2term)
 [![pypi](https://badge.fury.io/py/doc2term.svg)](https://pypi.org/project/doc2term/)
 [![license](https://img.shields.io/:license-Apache%202-blue.svg)](http://github.com/callforpapers-source/doc2term/blob/master/LICENSE.txt)
 
