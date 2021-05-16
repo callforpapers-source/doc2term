@@ -64,11 +64,11 @@ test-data:  ## Download test data
 
 clean:  ## Clean build files
 	rm -rf build dist site htmlcov .pytest_cache .eggs
-	rm -f .coverage coverage.xml word2vec/_generated_version.py
 	find . -type f -name '*.py[co]' -delete
 	find . -type d -name __pycache__ -exec rm -rf {} +
 	find . -type d -name .ipynb_checkpoints -exec rm -rf {} +
 	rm -rf data/test*
+
 
 
 cleanall: clean   ## Clean everything
