@@ -1,0 +1,12 @@
+language: python
+python:
+  - 3.9
+  - master
+os:
+  - linux
+  - freebsd
+  - osx
+script:
+  - make test
+  - make test-data
+  - python setup.py install
