@@ -7,7 +7,7 @@ def doc2term(input_text, output_text, section=0):
     """
     doc2term execution
 
-    Parameters for training:
+    Parameters:
         input_text <file>
             Use text data from <file> to run the doc2term
         output <file>
@@ -36,7 +36,7 @@ def doc2term_str(docs, section=2, format='str'):
     """
     doc2term_str gets a string and return the results in the specified format
 
-    Parameters for training:
+    Parameters:
         docs <str>
             Use text data to run the doc2term. each document should be in a new line.
         section <int>
@@ -82,7 +82,7 @@ def doc2term_list(docs, section=2, format="list"):
     """
     doc2term_list gets a list of docs and return the results in the specified format
 
-    Parameters for training:
+    Parameters:
         docs <list>
             Use text data to run the doc2term. each document should be in a new index of list.
         section <int>

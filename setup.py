@@ -72,7 +72,6 @@ setup(
     entry_points={},
     options={"bdist_wheel": {"universal": "1"}},
     python_requires=">=3.7",
-    install_requires=read_file("requirements.txt").splitlines(),
     description="A fast NLP tokenizer that detects tokens and remove"\
                 " duplications and punctuations",
     long_description=read_file("README.md"),
