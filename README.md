@@ -4,7 +4,7 @@
 [![pypi](https://badge.fury.io/py/doc2term.svg)](https://pypi.org/project/doc2term/)
 [![license](https://img.shields.io/:license-Apache%202-blue.svg)](http://github.com/callforpapers-source/doc2term/blob/master/LICENSE.txt)
 
-A fast NLP tokenizer that detects sentences, words, numbers, urls, hostnames, emails, filenames, and phone numbers. Tokenize integrates and standardize the documents, remove the punctuations and duplications.
+A fast NLP tokenizer that detects sentences, words, numbers, urls, hostnames, emails, filenames, and phone numbers. Tokenize integrates and standardizes the documents, remove the punctuations and duplications.
 
 ## Installation
 
