@@ -62,7 +62,7 @@ data_files = [("bin", files)]
 
 setup(
     name="doc2term",
-    version="0.1.0",
+    version="0.2.0",
     use_scm_version=True,
     packages=find_packages(),
     include_package_data=True,
