@@ -1,7 +1,6 @@
 # doc2term
 
 [![Build Status](https://travis-ci.com/callforpapers-source/doc2term.svg?branch=main)](https://travis-ci.com/callforpapers-source/doc2term)
-[![pypi](https://badge.fury.io/py/doc2term.svg)](https://pypi.org/project/doc2term/)
 [![license](https://img.shields.io/:license-Apache%202-blue.svg)](http://github.com/callforpapers-source/doc2term/blob/master/LICENSE.txt)
 
 A fast NLP tokenizer that detects sentences, words, numbers, urls, hostnames, emails, filenames, dates, and phone numbers. Tokenize integrates and standardize the documents, remove the punctuations and duplications.
