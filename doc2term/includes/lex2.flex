@@ -15,6 +15,9 @@ int chr = 0;
 int ngram = 5;
 int min = 0;
 char section = '0';
+char includeNumbersDates;
+char includeEmailsPhonesUrls;
+char includeHostsFiles;
 /*
 	Add a token to the tokens and count number of sentences
 */
@@ -56,6 +59,7 @@ void endOfDoc() {
 	F: FILE
 	U: URL
 	D: NEW DOCUMENT
+	Z: TIME
 */
 
 %}
@@ -65,6 +69,7 @@ WORD 			[A-z]
 PHRASE 			[A-z0-9\-\.]+
 STOP_PUNCS      ("."|"?"|"!"|";"|"·"|"|"|":"|" - "|"("|")"|"\"")+
 PHONE 			\+[0-9]{1,3}(-|\s)[0-9]{9,}
+DATE 			[0-9]{2,4}(-|".")[0-9]{1,2}(-|".")[0-9]{1,2}
 TERM			({WORD}|{DIGIT})*{WORD}({WORD}|{DIGIT}|(('|`)({WORD})))*
 SYMBOL 			({WORD}|{DIGIT})({WORD}|{DIGIT}|_|-)*
 DOMAIN 			("mil"|"info"|"gov"|"edu"|"biz"|"com"|"org"|"net"|"arpa"|[A-z]{2})
@@ -80,7 +85,9 @@ URL_PATH 		([!*'();:@&=+$,/?%#_.~]|"-"|"["|"]"|[A-z]|[0-9])+
 			/*ignore*/
 		}
 ("-"|"+"){0,1}{DIGIT}+([":"|"."|"-"|"_"]{DIGIT}+)*		{
-			add("N", yytext);
+			if (includeNumbersDates == '1') {
+				add("N", yytext);
+			}
 		}
 ({WORD}"."({WORD}".")+)|({TERM}("&"{TERM})+) 	{
 			add("T", yytext);
@@ -91,7 +98,14 @@ URL_PATH 		([!*'();:@&=+$,/?%#_.~]|"-"|"["|"]"|[A-z]|[0-9])+
 			}
 		}
 {PHONE} {
-			add("P", yytext);
+			if (includeEmailsPhonesUrls == '1') {
+				add("P", yytext);
+			}
+		}
+{DATE} {
+			if (includeNumbersDates == '1') {
+				add("Z", yytext);
+			}
 		}
 {TERM}("-"{TERM})+ {
 			add("T", yytext);
@@ -103,7 +117,6 @@ URL_PATH 		([!*'();:@&=+$,/?%#_.~]|"-"|"["|"]"|[A-z]|[0-9])+
 		}
 {TERM}("'"|"`"{WORD}{1,2}) {
 			add("T", yytext);
-			
 		}
 {TERM}"s"("'"|"`") {
 			add("T", yytext);
@@ -112,16 +125,24 @@ URL_PATH 		([!*'();:@&=+$,/?%#_.~]|"-"|"["|"]"|[A-z]|[0-9])+
 			add("T", yytext);
 		}
 ("mailto:")?{PHRASE}("."{PHRASE})*"@"{PHRASE}"."{DOMAIN} {
-			add("E", yytext);
+			if (includeEmailsPhonesUrls == '1') {
+				add("E", yytext);
+			}
 		}
 {BASEURL} {
-			add("H", yytext);
+			if (includeHostsFiles == '1') {
+				add("H", yytext);
+			}
 		}
 {SYMBOL}("."{SYMBOL})*("."{SYMBOL}) {
-			add("F", yytext);
+			if (includeHostsFiles == '1') {
+				add("F", yytext);
+			}
 		}
 ({WORD}+"://"){BASEURL}{URL_PATH}? {
-			add("U", yytext);
+			if (includeEmailsPhonesUrls == '1') {
+				add("U", yytext);
+			}
 		}
 {STOP_PUNCS}[^A-z0-9\-_]+{STOP_PUNCS}	{
 			if (ngramOfSentences != 0) {
@@ -143,6 +164,11 @@ int main(int argc, char* argv[])
 	if(argc == 0)
 	{
 		return 0;
+	}
+	if (argv[3]) {
+		includeNumbersDates = argv[3][1];
+		includeEmailsPhonesUrls = argv[3][2];
+		includeHostsFiles = argv[3][3];
 	}
 	FILE *fp = fopen(argv[1], "r");
 	FILE *fpw;
